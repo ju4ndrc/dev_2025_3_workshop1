@@ -15,7 +15,10 @@ class Conversion:
             celsius_a_fahrenheit(0) -> 32.0
             celsius_a_fahrenheit(100) -> 212.0
         """
-        pass
+
+        
+        formula = (celsius * 9/5) +32
+        return formula;
     
     def fahrenheit_a_celsius(self, fahrenheit):
         """
@@ -33,7 +36,8 @@ class Conversion:
             fahrenheit_a_celsius(32) -> 0.0
             fahrenheit_a_celsius(212) -> 100.0
         """
-        pass
+        formula = (fahrenheit-32)*5/9;
+        return formula;
     
     def metros_a_pies(self, metros):
         """
@@ -50,7 +54,8 @@ class Conversion:
         Ejemplo:
             metros_a_pies(1) -> 3.28084
         """
-        pass
+        f = metros / 0.3048;
+        return f;
     
     def pies_a_metros(self, pies):
         """
@@ -67,7 +72,9 @@ class Conversion:
         Ejemplo:
             pies_a_metros(3.28084) -> 1.0
         """
-        pass
+        f = (pies/3.2808399);
+        
+        return f;
     
     def decimal_a_binario(self, decimal):
         """
@@ -83,8 +90,30 @@ class Conversion:
             decimal_a_binario(10) -> "1010"
             decimal_a_binario(255) -> "11111111"
         """
-        pass
-    
+
+        mod = [];
+
+
+        while(decimal != 0):
+            bit = decimal % 2; 
+            
+            cos = decimal // 2;
+            
+            mod.append(bit);
+            
+            decimal = cos;
+        
+        invert = [];
+
+        for i in range(1, len(mod)+1,1):
+            invert.append(mod[-i])
+
+        modS = "";
+        for i in invert:
+            modS = modS + str(i)
+
+        return modS;
+
     def binario_a_decimal(self, binario):
         """
         Convierte un número binario a decimal.
