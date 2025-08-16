@@ -103,16 +103,17 @@ class Conversion:
             
             decimal = cos;
         
-        invert = [];
+        # invert = [];
 
-        for i in range(1, len(mod)+1,1):
-            invert.append(mod[-i])
+        # for i in range(1, len(mod)+1,1):
+        #     invert.append(mod[-i])
 
-        modS = "";
-        for i in invert:
-            modS = modS + str(i)
+        # modS = "";
+        # for i in invert:
+        #     modS = modS + str(i)
+        bin = "".join(str(bit)for bit in mod[::-1]);
 
-        return modS;
+        return bin;
 
     def binario_a_decimal(self, binario):
         """
@@ -128,7 +129,20 @@ class Conversion:
             binario_a_decimal("1010") -> 10
             binario_a_decimal("11111111") -> 255
         """
-        pass
+        s = 0;
+        
+        i = 0;
+        bin = int(binario);
+
+        while(bin >= 1):
+            d = bin%10;
+            bin=int(bin/10);
+            s = s + d * pow(2,i);
+            i = i + 1; 
+
+        
+
+        return s;
     
     def decimal_a_romano(self, numero):
         """
@@ -193,3 +207,8 @@ class Conversion:
             morse_a_texto(".... . .-.. .-.. ---") -> "HELLO"
         """
         pass
+
+
+show = Conversion();
+
+print(show.binario_a_decimal(1010)," ",type(show.binario_a_decimal(1010)));
