@@ -93,15 +93,15 @@ class Conversion:
 
         mod = [];
 
-
-        while(decimal != 0):
-            bit = decimal % 2; 
+        dec = int(decimal);
+        while(dec != 0):
+            bit = dec % 2; 
             
-            cos = decimal // 2;
+            cos = dec // 2;
             
             mod.append(bit);
             
-            decimal = cos;
+            dec = cos;
         
         # invert = [];
 
@@ -111,7 +111,8 @@ class Conversion:
         # modS = "";
         # for i in invert:
         #     modS = modS + str(i)
-        bin = "".join(str(bit)for bit in mod[::-1]);
+
+        bin = "".join(str(bit) for bit in mod[::-1]);
 
         return bin;
 
@@ -141,7 +142,7 @@ class Conversion:
             i = i + 1; 
 
         
-
+ 
         return s;
     
     def decimal_a_romano(self, numero):
@@ -158,7 +159,18 @@ class Conversion:
             decimal_a_romano(9) -> "IX"
             decimal_a_romano(1994) -> "MCMXCIV"
         """
-        pass
+        nums = [1000,900,500,400,100,90,50,40,10,9,5,4,1];
+        numerals = ['M','CM','D','CD','C','XC','L','XL','X','IX','V','IV','I'];
+    
+        romanNumeral = '';
+        i = 0;
+        while numero > 0:
+            for _ in range(numero // nums[i]):
+                romanNumeral = romanNumeral + numerals[i];
+                numero = numero - nums[i];
+
+            i = i + 1;
+        return romanNumeral;
     
     def romano_a_decimal(self, romano):
         """
@@ -211,4 +223,4 @@ class Conversion:
 
 show = Conversion();
 
-print(show.binario_a_decimal(1010)," ",type(show.binario_a_decimal(1010)));
+print("Result:",show.decimal_a_romano(9),"\n data Type:",type(show.decimal_a_romano(9)));
