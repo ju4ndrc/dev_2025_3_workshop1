@@ -188,7 +188,7 @@ class Conversion:
             romano_a_decimal("MCMXCIV") -> 1994
         """
         numerals = {'I':1,'V':5,'X':10,'L':50,'C':100,'D':500,'M':1000};
-        result = 0;
+        result = 0;        
 
         for i in range(len(romano)):
             actual = numerals[romano[i]];
@@ -220,7 +220,20 @@ class Conversion:
             texto_a_morse("SOS") -> "... --- ..."
             texto_a_morse("HELLO") -> ".... . .-.. .-.. ---"
         """
-        pass
+        MORSE = {
+        'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.',
+        'F': '..-.', 'G': '--.', 'H': '....', 'I': '..', 'J': '.---',
+        'K': '-.-', 'L': '.-..', 'M': '--', 'N': '-.', 'O': '---',
+        'P': '.--.', 'Q': '--.-', 'R': '.-.', 'S': '...', 'T': '-',
+        'U': '..-', 'V': '...-', 'W': '.--', 'X': '-..-', 'Y': '-.--',
+        'Z': '--..',
+        '0': '-----', '1': '.----', '2': '..---', '3': '...--',
+        '4': '....-', '5': '.....', '6': '-....', '7': '--...',
+        '8': '---..', '9': '----.'
+        }
+        return ' '.join(MORSE[c]
+                        for c in texto.upper())
+
     
     def morse_a_texto(self, morse):
         """
@@ -236,9 +249,37 @@ class Conversion:
             morse_a_texto("... --- ...") -> "SOS"
             morse_a_texto(".... . .-.. .-.. ---") -> "HELLO"
         """
-        pass
+        MORSE_TO_TEXT = {
+            '.-': 'A', '-...': 'B', '-.-.': 'C', '-..': 'D', '.': 'E',
+            '..-.': 'F', '--.': 'G', '....': 'H', '..': 'I', '.---': 'J',
+            '-.-': 'K', '.-..': 'L', '--': 'M', '-.': 'N', '---': 'O',
+            '.--.': 'P', '--.-': 'Q', '.-.': 'R', '...': 'S', '-': 'T',
+            '..-': 'U', '...-': 'V', '.--': 'W', '-..-': 'X', '-.--': 'Y',
+            '--..': 'Z',
+            '-----': '0', '.----': '1', '..---': '2', '...--': '3',
+            '....-': '4', '.....': '5', '-....': '6', '--...': '7',
+            '---..': '8', '----.': '9'
+        }
+
+        words = morse.split(" / ");
+        result = [];
+
+        for word in words:
+            letters = word.split(" ");
+            word_traduce = "";
+
+        for letter in letters:
+            if letter in MORSE_TO_TEXT:
+                word_traduce = word_traduce + MORSE_TO_TEXT[letter];
+            else:
+                word_traduce = word_traduce + "";
+        result.append(word_traduce);
+
+        return " ".join(result);
+
+
 
 
 show = Conversion();
 
-print("Result:",show.romano_a_decimal('IX'),"\n data Type:",type(show.romano_a_decimal('IX')));
+print("Result:",show.morse_a_texto(".... . .-.. .-.. ---"),"\n data Type:",type(show.morse_a_texto(".... . .-.. .-.. ---")));
