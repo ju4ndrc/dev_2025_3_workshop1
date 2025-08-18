@@ -92,16 +92,17 @@ class Conversion:
         """
 
         mod = [];
+        if(decimal == 0):
+            return "0";
 
-        dec = int(decimal);
-        while(dec != 0):
-            bit = dec % 2; 
+        while(decimal != 0):
+            bit = decimal % 2; 
             
-            cos = dec // 2;
+            cos = decimal // 2;
             
             mod.append(bit);
             
-            dec = cos;
+            decimal = cos;
         
         # invert = [];
 
