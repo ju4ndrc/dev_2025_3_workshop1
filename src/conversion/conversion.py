@@ -187,7 +187,24 @@ class Conversion:
             romano_a_decimal("IX") -> 9
             romano_a_decimal("MCMXCIV") -> 1994
         """
-        pass
+        numerals = {'I':1,'V':5,'X':10,'L':50,'C':100,'D':500,'M':1000};
+        result = 0;
+
+        for i in range(len(romano)):
+            actual = numerals[romano[i]];
+            
+            # primero se evalua si sigue alguno
+            if i+1 < len(romano) and actual < numerals[romano[i+1]]:
+                
+                result = result - actual;
+            else:
+                result = result + actual;
+
+        return result; 
+
+
+
+    
     
     def texto_a_morse(self, texto):
         """
@@ -224,4 +241,4 @@ class Conversion:
 
 show = Conversion();
 
-print("Result:",show.decimal_a_romano(9),"\n data Type:",type(show.decimal_a_romano(9)));
+print("Result:",show.romano_a_decimal('IX'),"\n data Type:",type(show.romano_a_decimal('IX')));
