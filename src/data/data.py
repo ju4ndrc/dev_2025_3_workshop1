@@ -14,7 +14,17 @@ class Data:
         Returns:
             list: Lista con los elementos en orden inverso
         """
-        pass
+        size = len(lista);
+
+        invert = [];
+        for i in range(1, size+1 , 1):
+            invert.append(lista[-i]);
+
+        for i in invert:
+
+            print (i);
+        return invert;
+
     
     def buscar_elemento(self, lista, elemento):
         """
@@ -28,7 +38,16 @@ class Data:
         Returns:
             int: Índice del elemento o -1 si no se encuentra
         """
-        pass
+        i = 0;
+        for indx in lista:
+
+            if indx == elemento:
+
+                return i;
+            i = i +1;        
+
+        return -1;
+        
     
     def eliminar_duplicados(self, lista):
         """
@@ -41,7 +60,11 @@ class Data:
         Returns:
             list: Lista sin elementos duplicados
         """
-        pass
+        unicElements = [];
+        for i in lista:
+            if i not in unicElements:
+                unicElements.append(i);
+        return unicElements;
     
     def merge_ordenado(self, lista1, lista2):
         """
@@ -123,3 +146,11 @@ class Data:
             list: Matriz transpuesta
         """
         pass
+
+
+show = Data();
+
+find = [1,'a',True];
+
+print(type(show.eliminar_duplicados(find)));
+print(show.eliminar_duplicados(find));
