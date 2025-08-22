@@ -78,7 +78,22 @@ class Data:
         Returns:
             list: Lista combinada y ordenada
         """
-        pass
+        # def listMix(list1,list2):
+        #     return sorted(list1+list2)
+        def orderedList(list):
+            n = len(list)
+            for i in range(n):
+                for j in range(0,n-i-1):
+                    if list[j] > list[j+1]:
+                        list[j], list[j+1] = list[j+1], list[j];
+            return list;
+
+        orList1 = orderedList(lista1);
+        orList2 = orderedList(lista2);
+        result = orList1 + orList2;
+        orResult = orderedList(result); 
+        return orResult;
+
     
     def rotar_lista(self, lista, k):
         """
@@ -151,7 +166,8 @@ class Data:
 
 show = Data();
 
-find = [1,'a',True,True,'a',1];
+lis1 = [2,1,5,4,3,6];
+lis2 = [2,1,5,4,3,6];
 
-print(type(show.eliminar_duplicados(find)));
-print(show.eliminar_duplicados(find));
+print(type(show.merge_ordenado(lis1,lis2)));
+print(show.merge_ordenado(lis1,lis2));
