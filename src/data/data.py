@@ -129,8 +129,21 @@ class Data:
         Returns:
             int: El número que falta en la secuencia
         """
-        pass
-    
+        
+        def sum(lista):    
+            sum = 0;
+            for i in lista:
+                sum = sum  +  i; 
+            return sum;
+        sumTi = sum(lista);
+        size = len(lista)+1;
+        def sumT(size):
+            return ((size * (size + 1))//2);
+
+        result = - sum(lista) + sumT(size);
+        return result;
+
+
     def es_subconjunto(self, conjunto1, conjunto2):
         """
         Verifica si conjunto1 es subconjunto de conjunto2 sin usar set.
@@ -179,8 +192,8 @@ show = Data();
 
 
 
-lis1 = [1,2,3,4,5,6,7];
+lis1 = [1,2,3,5,6,7];
 k = 3;
 
-print(type(show.rotar_lista(lis1,3)));
-print(show.rotar_lista(lis1,3));
+print(type(show.encuentra_numero_faltante(lis1)));
+print(show.encuentra_numero_faltante(lis1));
