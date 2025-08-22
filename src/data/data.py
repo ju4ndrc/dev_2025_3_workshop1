@@ -106,7 +106,18 @@ class Data:
         Returns:
             list: Lista rotada
         """
-        pass
+        size = (len(lista));
+        # aux = [];
+        # for i in range(size):
+        #     value = (lista[i]+k)%size+1;
+        #     aux.append(value);
+        # lista = aux;
+        try:
+            k = k % size;
+            return lista[-k:] + lista[:-k];
+        except:
+            return [];
+
     
     def encuentra_numero_faltante(self, lista):
         """
@@ -166,8 +177,10 @@ class Data:
 
 show = Data();
 
-lis1 = [2,1,5,4,3,6];
-lis2 = [2,1,5,4,3,6];
 
-print(type(show.merge_ordenado(lis1,lis2)));
-print(show.merge_ordenado(lis1,lis2));
+
+lis1 = [1,2,3,4,5,6,7];
+k = 3;
+
+print(type(show.rotar_lista(lis1,3)));
+print(show.rotar_lista(lis1,3));
