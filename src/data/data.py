@@ -61,9 +61,10 @@ class Data:
             list: Lista sin elementos duplicados
         """
         unicElements = [];
-        for i in lista:
-            if i not in unicElements:
-                unicElements.append(i);
+
+        for i in range(len(lista)):
+            if not any(lista[i] is x for x in unicElements):
+                unicElements.append(lista[i]);
         return unicElements;
     
     def merge_ordenado(self, lista1, lista2):
@@ -150,7 +151,7 @@ class Data:
 
 show = Data();
 
-find = [1,'a',True];
+find = [1,'a',True,True,'a',1];
 
 print(type(show.eliminar_duplicados(find)));
 print(show.eliminar_duplicados(find));
