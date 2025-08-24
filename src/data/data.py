@@ -167,7 +167,36 @@ class Data:
         Returns:
             dict: Diccionario con métodos push, pop, peek y is_empty
         """
-        pass
+        def newStack():
+            
+            stack = [];
+
+            def push(o):
+                stack.append(o);
+                return stack;
+                
+            def pop():
+                if stack == []:
+                    return None;
+                else:
+                    return stack.pop();
+            def peek():
+                if stack == []:
+                    return None;
+                else:
+                    return stack[-1];
+            def is_empty():
+                if stack == [] :
+                    return True;
+                else:
+                    return False;
+
+            dic = {"push":push,
+                "pop":pop,
+                "peek":peek,
+                "is_empty":is_empty
+                };
+            return dic;
     
     def implementar_cola(self):
         """
@@ -188,15 +217,26 @@ class Data:
         Returns:
             list: Matriz transpuesta
         """
-        pass
+        result = [];
+
+        rows = len(matriz);
+
+        colums = len(matriz[0]) if matriz else 0;
+
+        for i in range(colums):
+            result.append([]);
+            for j in range(rows):
+                result[i].append(matriz[j][i])
+
+        return result;
 
 
 show = Data();
 
 
 
-lis1 = [1,2,3,5,6,7];
-k = 3;
+lis1 = [[1,2,3],[4,5,6]];
 
-print(type(show.encuentra_numero_faltante(lis1)));
-print(show.encuentra_numero_faltante(lis1));
+
+print(type(show.matriz_transpuesta(lis1)));
+print(show.matriz_transpuesta(lis1));
