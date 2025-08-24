@@ -15,7 +15,47 @@ class Games:
             - Tijera vence a papel
             - Papel vence a piedra
         """
-        pass
+        weapons = ['piedra','papel','tijera']
+        
+        jugador1 = jugador1.lower();
+        
+        jugador2 = jugador2.lower();
+        if jugador1 not in weapons or jugador2 not in weapons:
+            return "invalid";
+    
+        if jugador1 == jugador2:
+            return "empate";
+
+        rules = {
+            'piedra':'tijera',
+            'tijera':'papel',
+            'papel': 'piedra'
+        }
+        if rules[jugador1] == jugador2:
+            return 'jugador1';
+        else:
+            return 'jugador2';
+
+        # elif jugador1 == "piedra":
+        #     if jugador2 == "papel":
+        #         return "jugador2";
+        #     if jugador2 == "tijera":
+        #         return "jugador1";
+        # elif jugador1 == "papel":
+        #     if jugador2 == "tijera":
+        #         return "jugador2";
+        #     if jugador2== "tijera":
+        #         return "jugador1";
+        # elif jugador1 == "tijera":
+        #     if jugador2 == "piedra":
+        #         return "jugador2";
+        #     if jugador2 == "papel":
+        #         return "jugador1";
+           
+
+
+            
+
     
     def adivinar_numero_pista(self, numero_secreto, intento):
         """
@@ -83,3 +123,6 @@ class Games:
             - No puede saltar sobre otras piezas
         """
         pass
+
+show = Games();
+print(show.piedra_papel_tijera("Tijera","papel"));
