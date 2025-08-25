@@ -90,7 +90,29 @@ class Games:
              ["O", "O", " "],
              [" ", " ", " "]] -> "X"
         """
-        pass
+        print(tablero);
+        for i in range(3):
+            if tablero[i][0] == tablero[i][1] == tablero[i][2] != ' ':
+                return tablero[i][0];
+        for i in range(3):
+            if tablero[0][i] == tablero[1][i] == tablero[2][i] != ' ':
+                return tablero[0][i];
+    
+        if tablero[0][0] == tablero[1][1] == tablero[2][2] != ' ':
+            return tablero[0][0];
+        if tablero[0][2] == tablero[1][1] == tablero[2][0] != ' ':
+            return tablero[0][2];
+            
+        for i in tablero:
+            if ' ' in i:
+                return 'continua';
+        
+        
+        return "empate";
+
+        
+        
+        
     
     def generar_combinacion_mastermind(self, longitud, colores_disponibles):
         """
@@ -131,5 +153,11 @@ class Games:
 
 show = Games();
 # print(show.piedra_papel_tijera("Tijera","papel"));
+tablero_continua = [["X", "O", " "], [" ", "X", "O"], ["O", " ", "X"]];
 
-print(show.adivinar_numero_pista(-10, -5));
+
+print(show.ta_te_ti_ganador(tablero_continua));
+print(type(show.ta_te_ti_ganador(tablero_continua)));
+
+
+# print(show.adivinar_numero_pista(-10, -5));
