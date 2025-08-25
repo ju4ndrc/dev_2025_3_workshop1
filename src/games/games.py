@@ -68,7 +68,12 @@ class Games:
         Returns:
             str: "correcto", "muy alto" o "muy bajo"
         """
-        pass
+        if numero_secreto == intento :
+            return "correcto";
+        elif numero_secreto < intento:
+            return "muy alto";
+        elif numero_secreto > intento:
+            return "muy bajo"
     
     def ta_te_ti_ganador(self, tablero):
         """
@@ -125,4 +130,6 @@ class Games:
         pass
 
 show = Games();
-print(show.piedra_papel_tijera("Tijera","papel"));
+# print(show.piedra_papel_tijera("Tijera","papel"));
+
+print(show.adivinar_numero_pista(-10, -5));
