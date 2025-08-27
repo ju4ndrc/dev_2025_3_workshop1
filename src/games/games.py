@@ -107,7 +107,9 @@ class Games:
             if ' ' in i:
                 return 'continua';
         
-        
+        # Test juego continúa (tablero incompleto sin ganador)
+        # tablero_continua = [["X", "O", " "], [" ", "X", "O"], ["O", " ", "X"]]
+        # assert self.games.ta_te_ti_ganador(tablero_continua) == "continua"
         return "empate";
 
         
@@ -129,7 +131,16 @@ class Games:
             generar_combinacion_mastermind(4, ["rojo", "azul", "verde"]) 
             -> ["rojo", "azul", "rojo", "verde"]
         """
-        pass
+        mix = [];
+
+        for i in range(longitud):
+            color = colores_disponibles[0];
+            mix.append(color);
+        return mix;
+            
+
+
+
     
     def validar_movimiento_torre_ajedrez(self, desde_fila, desde_col, hasta_fila, hasta_col, tablero):
         """
@@ -149,15 +160,40 @@ class Games:
             - La torre se mueve horizontal o verticalmente
             - No puede saltar sobre otras piezas
         """
-        pass
+        if desde_fila != hasta_fila and desde_col != hasta_fila:
+            print("no es movimiento lineal-primer condicional evaluado-");
+
+
+        if desde_fila == hasta_fila:
+            aux = 0;
+            if hasta_col > desde_col:
+                aux = 1;
+            else:
+                aux = -1;
+
+            for c in range(desde_col + aux, hasta_col, aux):
+                print(f"watch space in {desde_fila}, {c}");
+                if tablero[desde_fila][c] != ' ':
+                    print(f"here is a piece {tablero[desde_fila][c]}");
+        
 
 show = Games();
+
 # print(show.piedra_papel_tijera("Tijera","papel"));
-tablero_continua = [["X", "O", " "], [" ", "X", "O"], ["O", " ", "X"]];
+# tablero_continua = [["X", "O", " "], [" ", "X", "O"], ["O", " ", "X"]];
 
 
-print(show.ta_te_ti_ganador(tablero_continua));
-print(type(show.ta_te_ti_ganador(tablero_continua)));
+# print(show.ta_te_ti_ganador(tablero_continua));
+# print(type(show.ta_te_ti_ganador(tablero_continua)));
 
+# colores = ["rojo", "azul", "verde", "amarillo"];
+
+# print(show.generar_combinacion_mastermind( 4 , colores ));
 
 # print(show.adivinar_numero_pista(-10, -5));
+tablero_vacio = [[" " for _ in range(8)] for _ in range(8)];
+
+for i in tablero_vacio:
+    print(i);
+
+print(show.validar_movimiento_torre_ajedrez(0,0,0,7,tablero_vacio));
