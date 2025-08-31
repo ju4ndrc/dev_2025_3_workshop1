@@ -197,6 +197,7 @@ class Data:
                 "is_empty":is_empty
                 };
             return dic;
+        return newStack();
     
     def implementar_cola(self):
         """
@@ -205,7 +206,33 @@ class Data:
         Returns:
             dict: Diccionario con métodos enqueue, dequeue, peek y is_empty
         """
-        pass
+        def newStack():
+            stack = [];
+            def enqueue(f):
+                return stack.append(f);
+            def dequeue():
+                if stack == []:
+                    return None;
+                else:
+                    return stack.pop(0);
+            def peek():
+                if stack == []:
+                    return None;
+                else:
+                    return stack[0];
+            def is_empty():
+                if stack == []:
+                    return True;
+            met = {
+                "enqueue":enqueue,
+                "dequeue":dequeue,
+                "peek":peek,
+                "is_empty":is_empty
+            };
+            return met;            
+
+        return newStack();
+        
     
     def matriz_transpuesta(self, matriz):
         """

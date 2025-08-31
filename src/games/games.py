@@ -160,8 +160,17 @@ class Games:
             - La torre se mueve horizontal o verticalmente
             - No puede saltar sobre otras piezas
         """
-        if desde_fila != hasta_fila and desde_col != hasta_fila:
+        if not (0 <= desde_fila < 8 and 0 <= desde_col < 8 and 0 <= hasta_fila <8 and 0<= hasta_col < 8):
+            # fuera de tablero
+            return False;
+    
+        if desde_fila == hasta_fila and desde_col == hasta_col:
+            # no es correcto movimiento en la misma casilla
+            return False
+
+        if desde_fila != hasta_fila and desde_col != hasta_col:
             print("no es movimiento lineal-primer condicional evaluado-");
+            return False;
 
 
         if desde_fila == hasta_fila:
@@ -174,7 +183,22 @@ class Games:
             for c in range(desde_col + aux, hasta_col, aux):
                 print(f"watch space in {desde_fila}, {c}");
                 if tablero[desde_fila][c] != ' ':
-                    print(f"here is a piece {tablero[desde_fila][c]}");
+                    
+                    return False
+        else:
+            if hasta_col > desde_col:
+                aux = 1;
+            else:
+                aux = -1;
+            for f in range(desde_fila + aux, hasta_fila,aux):
+                print(f"watch space in {desde_fila}, {f}");
+                if tablero[f][desde_col] != ' ':
+                    
+                    return False;
+        
+        print("valid movement");
+        return True;
+
         
 
 show = Games();
@@ -196,4 +220,5 @@ tablero_vacio = [[" " for _ in range(8)] for _ in range(8)];
 for i in tablero_vacio:
     print(i);
 
-print(show.validar_movimiento_torre_ajedrez(0,0,0,7,tablero_vacio));
+print(show.validar_movimiento_torre_ajedrez(0,0,1,1,tablero_vacio));
+print(type(show.validar_movimiento_torre_ajedrez(0,0,1,1,tablero_vacio)));
