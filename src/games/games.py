@@ -169,10 +169,10 @@ class Games:
             return False
 
         if desde_fila != hasta_fila and desde_col != hasta_col:
-            print("no es movimiento lineal-primer condicional evaluado-");
+            
             return False;
 
-
+        #horizontal
         if desde_fila == hasta_fila:
             aux = 0;
             if hasta_col > desde_col:
@@ -181,22 +181,22 @@ class Games:
                 aux = -1;
 
             for c in range(desde_col + aux, hasta_col, aux):
-                print(f"watch space in {desde_fila}, {c}");
+                
                 if tablero[desde_fila][c] != ' ':
                     
                     return False
-        else:
-            if hasta_col > desde_col:
+        else:#vertical
+            if hasta_fila > desde_fila:
                 aux = 1;
             else:
                 aux = -1;
             for f in range(desde_fila + aux, hasta_fila,aux):
-                print(f"watch space in {desde_fila}, {f}");
+                
                 if tablero[f][desde_col] != ' ':
                     
                     return False;
         
-        print("valid movement");
+        
         return True;
 
         
@@ -220,5 +220,12 @@ tablero_vacio = [[" " for _ in range(8)] for _ in range(8)];
 for i in tablero_vacio:
     print(i);
 
-print(show.validar_movimiento_torre_ajedrez(0,0,1,1,tablero_vacio));
-print(type(show.validar_movimiento_torre_ajedrez(0,0,1,1,tablero_vacio)));
+print(show.validar_movimiento_torre_ajedrez(0,-1,0,0,tablero_vacio));
+print(type(show.validar_movimiento_torre_ajedrez(0,-1,0,0,tablero_vacio)));
+
+
+tablero_con_piezas2 = [[" " for _ in range(8)] for _ in range(8)]
+tablero_con_piezas2[3][0] = "R"
+print(show.validar_movimiento_torre_ajedrez(0, 0, 7, 0, tablero_con_piezas2));
+print(type(show.validar_movimiento_torre_ajedrez(0, 0, 7, 0, tablero_con_piezas2)));
+
