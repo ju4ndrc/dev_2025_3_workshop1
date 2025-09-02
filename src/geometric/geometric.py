@@ -28,7 +28,7 @@ class Geometria:
         Returns:
             float: Perímetro del rectángulo
         """
-        pass
+        return 2*(base+altura);
     
     def area_circulo(self, radio):
         """
@@ -40,7 +40,7 @@ class Geometria:
         Returns:
             float: Área del círculo
         """
-        pass
+        return 3.14159*(radio*radio);
     
     def perimetro_circulo(self, radio):
         """
@@ -52,7 +52,7 @@ class Geometria:
         Returns:
             float: Perímetro del círculo
         """
-        pass
+        return ((2*3.14159)*(radio));
     
     def area_triangulo(self, base, altura):
         """
@@ -65,7 +65,8 @@ class Geometria:
         Returns:
             float: Área del triángulo
         """
-        pass
+        return ((base*altura)/2);
+        
     
     def perimetro_triangulo(self, lado1, lado2, lado3):
         """
@@ -79,7 +80,7 @@ class Geometria:
         Returns:
             float: Perímetro del triángulo
         """
-        pass
+        return (lado1 + lado2 + lado3);
     
     def es_triangulo_valido(self, lado1, lado2, lado3):
         """
@@ -95,7 +96,10 @@ class Geometria:
         Returns:
             bool: True si los lados pueden formar un triángulo, False en caso contrario
         """
-        pass
+        if (lado1 + lado2) > lado3 :
+            return True;
+        
+        return False;
     
     def area_trapecio(self, base_mayor, base_menor, altura):
         """
@@ -109,7 +113,9 @@ class Geometria:
         Returns:
             float: Área del trapecio
         """
-        pass
+        result = (((base_mayor + base_menor)/2)*(altura));
+        
+        return result;
     
     def area_rombo(self, diagonal_mayor, diagonal_menor):
         """
@@ -122,7 +128,8 @@ class Geometria:
         Returns:
             float: Área del rombo
         """
-        pass
+        result = ((diagonal_mayor * diagonal_menor )/ 2);
+        return result;
     
     def area_pentagono_regular(self, lado, apotema):
         """
@@ -334,3 +341,6 @@ class Geometria:
             float: Perímetro del polígono regular
         """
         pass
+
+show = Geometria()
+print(show.es_triangulo_valido(1, 2, 10));
