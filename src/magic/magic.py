@@ -14,7 +14,22 @@ class Magic:
         Returns:
             int: El n-ésimo número de Fibonacci
         """
-        pass
+        result = 0;
+        num = 0;
+        a = 1;
+
+        if n == 0 :
+            return 0;
+        else:
+    
+            for _ in range(n):
+            
+                result = num + a;
+                
+                num = a;
+                a = result;
+            
+            return num;
     
     def secuencia_fibonacci(self, n):
         """
@@ -149,3 +164,6 @@ class Magic:
             bool: True si es un cuadrado mágico, False en caso contrario
         """
         pass
+
+show = Magic();
+print(show.fibonacci(10));
