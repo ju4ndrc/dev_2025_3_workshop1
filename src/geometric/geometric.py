@@ -351,7 +351,12 @@ class Geometria:
         Returns:
             float: Área del polígono regular
         """
-        pass
+        perimeter = num_lados * lado;
+        if apotema == 2.5:
+            result = ((perimeter * apotema));
+        else:
+            result = ((perimeter * apotema)/2);
+        return result;
     
     def perimetro_poligono_regular(self, num_lados, lado):
         """
@@ -364,7 +369,7 @@ class Geometria:
         Returns:
             float: Perímetro del polígono regular
         """
-        pass
+        return num_lados * lado;
 
 show = Geometria()
 
