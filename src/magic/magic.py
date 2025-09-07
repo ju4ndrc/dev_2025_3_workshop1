@@ -1,3 +1,4 @@
+from itertools import chain
 class Magic:
     """
     Clase con métodos para juegos matemáticos, secuencias especiales y algoritmos numéricos.
@@ -41,7 +42,26 @@ class Magic:
         Returns:
             list: Lista con los primeros n números de Fibonacci
         """
-        pass
+        
+        result = 0;
+        num = 0;
+        a = 1;
+        sec = [0];
+
+        if n == 1 :
+            return  [0];
+        else:
+    
+            for _ in range(n-1):
+            
+                result = num + a;
+                
+                num = a;
+
+                a = result;
+                sec.append(num);
+            
+            return sec;
     
     def es_primo(self, n):
         """
@@ -53,7 +73,13 @@ class Magic:
         Returns:
             bool: True si n es primo, False en caso contrario
         """
-        pass
+        if n <= 1:
+            return False;
+        else:
+            for i in range(2,n):
+                if n % i == 0:
+                    return False;
+        return True;
     
     def generar_primos(self, n):
         """
@@ -65,7 +91,22 @@ class Magic:
         Returns:
             list: Lista de números primos hasta n
         """
-        pass
+
+        cousins = [];
+        if n <= 1:
+            return [];
+        else:
+            for i in range(2,n+1):
+
+                is_p = True;
+                for j in range(2,i):
+                    if i % j == 0:
+                        is_p = False;
+                        break
+                if is_p:
+                    cousins.append(i);
+
+            return cousins; 
     
     def es_numero_perfecto(self, n):
         """
@@ -77,7 +118,19 @@ class Magic:
         Returns:
             bool: True si n es un número perfecto, False en caso contrario
         """
-        pass
+        i = 2;
+        sum = 0;
+        while i <= n:
+            if n % i == 0:
+                sum = sum + n //i;
+            i = i+1;
+        if n <= 1:
+            return False;
+        if sum == n:
+            return True;
+        else:
+            return False;
+
     
     def triangulo_pascal(self, filas):
         """
@@ -89,8 +142,14 @@ class Magic:
         Returns:
             list: Lista de listas que representa el triángulo de Pascal
         """
-        pass
-    
+        row = [1]
+        result = []
+        for _ in range(filas):
+            result.append(row);
+            row = [i + j for i, j in zip([0] + row , row + [0])]
+   
+        return result;
+
     def factorial(self, n):
         """
         Calcula el factorial de un número.
@@ -101,7 +160,13 @@ class Magic:
         Returns:
             int: El factorial de n
         """
-        pass
+        aux = 1;
+
+        for i in range(1, n + 1):
+        
+            aux = aux * i;   
+        
+        return aux;        
     
     def mcd(self, a, b):
         """
@@ -114,8 +179,15 @@ class Magic:
         Returns:
             int: El máximo común divisor de a y b
         """
-        pass
-    
+        mcd = 1;
+
+        if a % b == 0 :
+            return b;
+        for i in range(int(b/2), 0 ,-1):
+            if a % i == 0 and b % i == 0:
+                mcd = i   
+                break         
+        return mcd;
     def mcm(self, a, b):
         """
         Calcula el mínimo común múltiplo de dos números.
@@ -127,7 +199,19 @@ class Magic:
         Returns:
             int: El mínimo común múltiplo de a y b
         """
-        pass
+        if b == 0:
+            return b; 
+        if a > b:
+            max = a
+        else:
+            max = b
+        while(True):
+            if((max % a == 0) and (max % b == 0)):
+                mcm = max
+                break
+            max = max + 1;
+        return mcm;
+
     
     def suma_digitos(self, n):
         """
@@ -139,7 +223,12 @@ class Magic:
         Returns:
             int: La suma de los dígitos de n
         """
-        pass
+        sum = 0;
+        while n > 0:
+            digit = n % 10
+            sum = sum + digit
+            n = n // 10
+        return sum;
     
     def es_numero_armstrong(self, n):
         """
@@ -151,19 +240,58 @@ class Magic:
         Returns:
             bool: True si n es un número de Armstrong, False en caso contrario
         """
-        pass
+        conv = str(n);
+        acum = 0;
+        for i in range(len(conv)):
+            acum = acum + (int(conv[i])**len(conv))
+        if acum == n:
+            return True;
+        else:
+            return False;
     
+
+
     def es_cuadrado_magico(self, matriz):
-        """
-        Verifica si una matriz es un cuadrado mágico (suma igual en filas, columnas y diagonales).
+        def diferentElemnets(matriz):
+            num = list(chain(*matriz))
+            return len(set(num)) == len(num)
+
+        if len(matriz) != len(matriz[0]):
+            return False  # No es cuadrada
+
+        if not diferentElemnets(matriz):
+            return False  # Elementos repetidos
+
+        target_sum = sum(matriz[0])
+
+        # Verificar filas
+        for fila in matriz:
+            if sum(fila) != target_sum:
+                return False
+
+        # Verificar columnas
+        for j in range(len(matriz[0])):
+            columna = [matriz[i][j] for i in range(len(matriz))]
+            if sum(columna) != target_sum:
+                return False
+
+        # Verificar diagonal principal
+        diagonalP = [matriz[i][i] for i in range(len(matriz))]
+        if sum(diagonalP) != target_sum:
+            return False
+
+        # Verificar diagonal secundaria
+        diagonalS = [matriz[i][len(matriz)-1-i] for i in range(len(matriz))]
+        if sum(diagonalS) != target_sum:
+            return False
+
+        return True
+
+
+
         
-        Args:
-            matriz (list): Lista de listas que representa una matriz cuadrada
-            
-        Returns:
-            bool: True si es un cuadrado mágico, False en caso contrario
-        """
-        pass
 
 show = Magic();
-print(show.fibonacci(10));
+# print(show.secuencia_fibonacci(2));
+# print(show.es_numero_perfecto(28));
+print(show.factorial(5));
