@@ -37,7 +37,11 @@ class Strings:
         Returns:
             str: Cadena invertida
         """
-        pass
+
+        revert = ""
+        for i in texto:
+            revert = i + revert;
+        return revert;
     
     def contar_vocales(self, texto):
         """
@@ -49,7 +53,11 @@ class Strings:
         Returns:
             int: Número de vocales en la cadena
         """
-        pass
+        vocal = 0;
+        for i in texto.lower():
+            if i in "aeiou" :
+                vocal = vocal + 1;
+        return vocal
     
     def contar_consonantes(self, texto):
         """
@@ -61,7 +69,9 @@ class Strings:
         Returns:
             int: Número de consonantes en la cadena
         """
-        pass
+        voc = "aeiou"
+        cons = sum ( 1 for i in texto.lower() if i.isalpha() and i not in voc)
+        return cons
     
     def es_anagrama(self, texto1, texto2):
         """
@@ -74,8 +84,14 @@ class Strings:
         Returns:
             bool: True si son anagramas, False en caso contrario
         """
-        pass
-    
+        s1 = sorted(texto1.lower())  
+        texto2 = texto2.replace(" ","").lower()
+        s2 = sorted(texto2)
+        igual = s1 == s2;
+        if igual:
+            return True;  
+        else:
+            return False;
     def contar_palabras(self, texto):
         """
         Cuenta el número de palabras en una cadena.
@@ -86,7 +102,8 @@ class Strings:
         Returns:
             int: Número de palabras en la cadena
         """
-        pass
+        word = texto.split()
+        return len(word)
     
     def palabras_mayus(self, texto):
         """
@@ -98,8 +115,13 @@ class Strings:
         Returns:
             str: Cadena con la primera letra de cada palabra en mayúscula
         """
-        pass
-    
+        try:
+            part = texto.split(" ")
+            part = [p.capitalize() if p else "" for p in part]
+            return " ".join(part);
+        except:
+            return "";
+
     def eliminar_espacios_duplicados(self, texto):
         """
         Elimina espacios duplicados en una cadena.
@@ -110,7 +132,16 @@ class Strings:
         Returns:
             str: Cadena sin espacios duplicados
         """
-        pass
+        start = texto.startswith(" ")
+        end = texto.endswith(" ")
+        body = " ".join(texto.strip().split())
+        if start:
+            body = " " + body
+        if end:
+            body = body + " "
+        return body
+
+
     
     def es_numero_entero(self, texto):
         """
@@ -122,7 +153,12 @@ class Strings:
         Returns:
             bool: True si la cadena representa un número entero, False en caso contrario
         """
-        pass
+        try:
+            int(texto)
+            return True
+        except ValueError:
+            return False
+        
     
     def cifrar_cesar(self, texto, desplazamiento):
         """
@@ -135,8 +171,15 @@ class Strings:
         Returns:
             str: Cadena cifrada
         """
-        pass
-    
+        result = ""
+        for i in texto:
+            if i.isalpha():
+                base = ord('A') if i.isupper() else ord('a')
+                newLetter = chr((ord(i)-base + desplazamiento)% 26 +base)
+                result = result + newLetter;
+            else:
+                result = result + 1;
+        return result
     def descifrar_cesar(self, texto, desplazamiento):
         """
         Descifra una cadena cifrada con el método César.
@@ -148,7 +191,15 @@ class Strings:
         Returns:
             str: Cadena descifrada
         """
-        pass
+        result = ""
+        for i in texto:
+            if i.isalpha():
+                base = ord('A') if i.isupper() else ord('a')
+                newLetter = chr((ord(i)-base - desplazamiento)% 26 +base)
+                result = result + newLetter;
+            else:
+                result = result + 1;
+        return result
     
     def encontrar_subcadena(self, texto, subcadena):
         """
@@ -161,6 +212,16 @@ class Strings:
         Returns:
             list: Lista con las posiciones iniciales de cada ocurrencia
         """
-        pass
+        if not subcadena:
+            return []
+        else:
+            pos = []
+            long_sub = len(subcadena)
+            long_text = len(texto)
+            for i in range(long_text - long_sub +1):
+                if texto[i:i + long_sub] == subcadena:
+                    pos.append(i)
+            return pos
+        
 show = Strings()
 print(show.es_palindromo("Anita lava la tina"))
