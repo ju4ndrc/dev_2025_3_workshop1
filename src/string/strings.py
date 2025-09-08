@@ -14,7 +14,18 @@ class Strings:
         Returns:
             bool: True si es palíndromo, False en caso contrario
         """
-        pass
+        texto = texto.replace(" ","").lower()
+        tam = len(texto);
+        cont = 0 ;
+     
+        for i in reversed(range(0, tam)):
+            if texto[i].lower() != texto[cont].lower():
+                return False    
+            cont = cont + 1 
+        return True 
+
+
+         
     
     def invertir_cadena(self, texto):
         """
@@ -151,3 +162,5 @@ class Strings:
             list: Lista con las posiciones iniciales de cada ocurrencia
         """
         pass
+show = Strings()
+print(show.es_palindromo("Anita lava la tina"))

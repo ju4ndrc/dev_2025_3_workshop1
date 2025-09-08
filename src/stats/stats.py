@@ -1,3 +1,4 @@
+
 class Stats:
     def promedio(self, numeros):
         """
@@ -12,7 +13,14 @@ class Stats:
         Ejemplo:
             promedio([1, 2, 3, 4, 5]) -> 3.0
         """
-        pass
+        sum = 0;
+        for i in numeros:
+            sum = sum + i;
+        if sum == 0:
+            return 0;
+        else:
+            result = sum / len(numeros) 
+            return result
     
     def mediana(self, numeros):
         """
@@ -24,12 +32,26 @@ class Stats:
             
         Returns:
             float: El valor mediano
-            
+             
         Ejemplo:
             mediana([1, 2, 3, 4, 5]) -> 3.0
             mediana([1, 2, 3, 4]) -> 2.5
         """
-        pass
+        if numeros == []:
+            return 0;
+        orderedList = sorted(numeros);
+        n = len(numeros)
+        if n % 2 != 0:
+            central_index = n // 2;
+            mediana = orderedList[central_index];
+        else:
+            index1 = (n//2)-1
+            index2 = n//2
+            value1 = orderedList[index1]
+            value2 = orderedList[index2]
+            mediana = (value1 + value2)/2
+        return mediana
+        
     
     def moda(self, numeros):
         """
@@ -45,8 +67,19 @@ class Stats:
         Ejemplo:
             moda([1, 2, 2, 3, 3, 3]) -> 3
         """
-        pass
-    
+        frecuenci = {}
+        if numeros == []:
+            return None;
+        for i in numeros:
+            frecuenci[i] = frecuenci.get(i, 0) + 1
+        max_frecuenci = 0
+        moda_value = 0
+        for i in frecuenci:
+            if frecuenci[i] > max_frecuenci:
+                max_frecuenci = frecuenci[i]
+                moda_value = i
+        return moda_value
+        
     def desviacion_estandar(self, numeros):
         """
         Calcula la desviación estándar de una lista de números.
@@ -61,7 +94,22 @@ class Stats:
         Ejemplo:
             desviacion_estandar([1, 2, 3, 4, 5]) -> 1.41...
         """
-        pass
+        if numeros == []:
+            return 0;
+        n = len(numeros)
+        sum = 0
+        for i in numeros:
+            sum = sum + i;
+        media = sum / n
+
+        square_sum = 0
+        for i in numeros:
+            diference = i - media;
+            square_sum = square_sum + diference ** 2
+
+        variance = square_sum /n
+        desviacion = variance ** 0.5
+        return desviacion
     
     def varianza(self, numeros):
         """
@@ -77,7 +125,22 @@ class Stats:
         Ejemplo:
             varianza([1, 2, 3, 4, 5]) -> 2.0
         """
-        pass
+        if numeros == []:
+            return 0;
+        n = len(numeros)
+        sum = 0
+        for i in numeros:
+            sum = sum + i;
+        media = sum / n
+
+        square_sum = 0
+        for i in numeros:
+            diference = i - media;
+            square_sum = square_sum + diference ** 2
+
+        variance = square_sum /n
+        
+        return variance
     
     def rango(self, numeros):
         """
@@ -92,4 +155,17 @@ class Stats:
         Ejemplo:
             rango([1, 5, 3, 9, 2]) -> 8
         """
-        pass
+        if numeros == []:
+            return 0;
+        max = numeros[0]
+        min = numeros[0]
+        for i in numeros:
+            if i > max:
+                max = i
+            if i < min:
+                min = i
+        return max - min;
+        
+
+show = Stats()
+print(show.desviacion_estandar([1, 2, 3, 4, 5]))
